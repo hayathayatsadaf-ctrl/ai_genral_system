@@ -13,13 +13,15 @@ function App() {
   const [entries, setEntries] = useState([]);
   const [insights, setInsights] = useState(null);
 
+  const API = "https://ai-genral-system.onrender.com";
+
   const loadEntries = async () => {
-    const res = await axios.get(`http://localhost:5000/api/journal/${user}`);
+    const res = await axios.get(`${API}/api/journal/${user}`);
     setEntries(res.data);
   };
 
   const submitJournal = async () => {
-    await axios.post("http://localhost:5000/api/journal", {
+    await axios.post(`${API}/api/journal`, {
       userId: user,
       ambience: "forest",
       text
@@ -29,9 +31,10 @@ function App() {
   };
 
   const loadInsights = async () => {
-    const res = await axios.get(`http://localhost:5000/api/journal/insights/${user}`);
+    const res = await axios.get(`${API}/api/journal/insights/${user}`);
     setInsights(res.data);
   };
+
 
   useEffect(() => {
     if (user) {
